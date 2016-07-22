@@ -34,5 +34,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
   # Provisioning, allows Vagrant tool to install additional software
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "master.yml"
+      ansible.install = true
+      ansible. version = "latest"
   end
 end
