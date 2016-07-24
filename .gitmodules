@@ -1,0 +1,3 @@
+[submodule "ProvisioningMasterNode"]
+	path = ProvisioningMasterNode
+	url = https://github.com/Desmotes/ProvisioningMasterNode.git
