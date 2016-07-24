@@ -1,5 +1,8 @@
-
-
-
-
+# Synch folder 
 .vagrant/*
+
+# pub rsa keys
+*.pub
+
+# password files
+
