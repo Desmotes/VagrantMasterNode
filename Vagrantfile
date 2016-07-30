@@ -6,22 +6,9 @@ Vagrant.require_version ">= 1.7.0"
 VAGRANT_API_VERSION = "2"
 
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
-  # Debian jessie distro 
-  config.vm.box = "debian/contrib-jessie64"
+  # Ubuntu 14.04 distro 
+  config.vm.box = "ubuntu/trusty64"
   config.vm.box_check_update = false
-
-  # Forwarded port mapping (Host - to - Guest) 
-  # Web Server Port
-  config.vm.network "forwarded_port", guest: 80, host: 8080
-  # Angular Ports for GUI
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 3001, host: 3001
-  
-  # Private network uses a specific static IP.
-  # You can choose among your network interfaces the proper IP.
-  # I use Wi-Fi interface with IP: 192.168.1.192 (remarkable).
-  # This command should be replaced according to your PC network setting.
-  config.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)", ip: "192.168.1.192"
 
   # Provider-specific configuration
   # VirtualBox 
@@ -29,6 +16,14 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
   # ivy (DC character - google it :P)
   config.vm.define "ivy" do |ivy|
      ivy.vm.hostname = "Ivy.vm"
+     # Forwarded port mapping (Host - to - Guest) 
+     # Web Server Port
+     ivy.vm.network "forwarded_port", guest: 80, host: 8080
+     # Angular Ports for GUI
+     ivy.vm.network "forwarded_port", guest: 3000, host: 3000
+     ivy.vm.network "forwarded_port", guest: 3001, host: 3001
+     # Private network with static IP (192.168.1.192)
+     ivy.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)", ip: "192.168.1.192"
   end
   
   config.vm.provider "virtualbox" do |vb|
@@ -42,12 +37,12 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
  
   # Provisioning, allows Vagrant tool to install additional software
   config.vm.provision "ansible_local" do |ansible|
-      ansible.verbose = "v"
-      # ansible.limit = "all"
       ansible.playbook = "ProvisioningMasterNode/master_node.yml"
-      # ansible.inventory_path = "ProvisioningMasterNode/master"
+      ansible.inventory_path = "ProvisioningMasterNode/master_local"
       ansible.vault_password_file = "ProvisioningMasterNode/.vault_pass"
       ansible.install = true
+      ansible.verbose = "v"
+      ansible.limit = "all"
       ansible.version = "latest"
   end
 end

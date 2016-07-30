@@ -1,26 +1,26 @@
 # Vagrant Master Node 
-This project uses Vagrant tool to build a development environment of the master node, which is also the monitoring node of Desmotes.
+This project uses Vagrant tool to build a local dev environment of the master node, which is also the monitoring node of Desmotes. So in master node, Desmotes project will install and run several tool packages using [Ansible](https://www.ansible.com/)
 
 Desmotes Project chooses Vagrant to setup experimental environment for the master node. More extensible Desmotes Project uses: 
-* Debian / jessies distro
-* Ansible / Provisioning mechanism 
+* Ubuntu 14.04 (LTS) / TrustyTahr distro
+* Ansible / Provisioning mechanism
 
 # Virtual Machine Creation 
-Desmotes development environment uses Virtual Box as VM provider.
+Desmotes local dev environment uses Virtual Box as VM provider.
 
-Creating the Vagrantfile
+## Run Desmotes Vagrantfile
 
-> vagrant init debian/contrib-jessie64; vagrant up --provider virtualbox
+Go to the Desmotes' Vagrant location
+ 
+> cd Desmotes/VagrantMasterNode/
 
-Running Provisioners
+> vagrant up
 
-Provisioners are run in three cases: The initial vagrant up, vagrant provision, and vagrant reload --provision
+If you want to change something on provision phase after the VM's creation, you have to run the following command in the Desmotes' Vagrant location
 
-> vagrant up 
+> cd Desmotes/VagrantMasterNode/
 
 > vagrant provision
-
-> vagrant reload --provision
 
 Based on lifecycle of VM. More information can be found here [https://www.vagrantup.com/docs/provisioning/basic_usage.html]
 
