@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
      # Forwarded port mapping (Host - to - Guest) 
      # Web Server Port
      ivy.vm.network "forwarded_port", guest: 80, host: 8080
-     # Angular Ports for GUI
+     # Ports for testing GUI
      ivy.vm.network "forwarded_port", guest: 3000, host: 3000
      ivy.vm.network "forwarded_port", guest: 3001, host: 3001
      # Private network with static IP (192.168.1.192)
