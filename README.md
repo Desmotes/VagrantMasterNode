@@ -24,3 +24,11 @@ If you want to change something on provision phase after the VM's creation, you 
 
 Based on lifecycle of VM. More information can be found here [https://www.vagrantup.com/docs/provisioning/basic_usage.html]
 
+
+# Desmotes Environment
+
+## MariaDB
+
+Desmotes service use following MariaDB configuration, which can be found in Wiki [here](https://github.com/Desmotes/VagrantMasterNode/wiki/MariaDB)
+
+
